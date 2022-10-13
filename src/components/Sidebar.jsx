@@ -7,7 +7,7 @@ import {links} from '../data/dummy';
 import { useStateContext } from '../context/ContextProvider';
 const SideBar = () => {
   const {activeMenu,setActiveMenu,
-  screenSize} = useStateContext();
+  screenSize,currentColor} = useStateContext();
 
   const handleCloseSideBar = ()=>{
     if(activeMenu && screenSize<900){
@@ -22,7 +22,7 @@ const SideBar = () => {
       {activeMenu &&(<>
       <div className='flex justify-between items-center'>
         <Link to='/' onClick={()=>{
-          console.log("clicked")
+       
           setActiveMenu(false)}} className="items-center
          gap-3 ml-3 mt-4 flex text-xl font-extrabold
           tracking-tight dark:text-white text-slate-900">
@@ -41,6 +41,9 @@ const SideBar = () => {
             </p>
            {item.links.map((link)=>(
             <NavLink
+            style={({isActive})=>({
+              backgroundColor:isActive?currentColor:''
+            })}
             to={`/${link.name}`} key={link.name} onClick={handleCloseSideBar}
             className={({isActive})=>isActive?activeLink:normalLink}>
               {link.icon}
