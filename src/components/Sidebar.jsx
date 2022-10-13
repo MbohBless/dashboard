@@ -6,7 +6,15 @@ import {TooltipComponent} from '@syncfusion/ej2-react-popups';
 import {links} from '../data/dummy';
 import { useStateContext } from '../context/ContextProvider';
 const SideBar = () => {
-  const {activeMenu,setActiveMenu} = useStateContext();
+  const {activeMenu,setActiveMenu,
+  screenSize} = useStateContext();
+
+  const handleCloseSideBar = ()=>{
+    if(activeMenu && screenSize<900){
+      setActiveMenu(false)
+    }
+  }
+
   const activeLink = 'flex item-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-white text-md m-2'
   const normalLink = 'flex item-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg dark:text-gray-200 dark:hover:text-black hover:bg-light-gray text-md text-gray-700 m-2'
   return (
@@ -21,7 +29,7 @@ const SideBar = () => {
           <SiShopware/> <span>Shopee</span>
         </Link>
         <TooltipComponent content="Menu" position='Bottom Center'>
-          <button type='button' onClick={()=>{setActiveMenu((prev)=>!prev)}} className="text-xl p-3 hover::bg-light-gray mt-4 block md:hidden"><MdOutlineCancel/></button>
+          <button type='button' onClick={handleCloseSideBar} className="text-xl p-3 hover::bg-light-gray mt-4 block md:hidden"><MdOutlineCancel/></button>
         </TooltipComponent>
       </div>
       <div className='mt-10 '>
@@ -33,7 +41,7 @@ const SideBar = () => {
             </p>
            {item.links.map((link)=>(
             <NavLink
-            to={`/${link.name}`} key={link.name} onClick={()=>{}}
+            to={`/${link.name}`} key={link.name} onClick={handleCloseSideBar}
             className={({isActive})=>isActive?activeLink:normalLink}>
               {link.icon}
               <span className='capitalize'>
