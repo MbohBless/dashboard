@@ -1,5 +1,5 @@
 # My Practice project built with React js
-<h2>Please 🙌🏼  if you like the content you can go ahead and start the repository </h2>
+<h2>Please 🙌🏼  if you like the content you can go ahead and star the repository if I get sufficient enough stars i'll work on little backend intergration</h2>
 
 
 The whole project is build with [tailwind CSS](https://tailwindcss.com/) for styling and is a detailed mobile responsive dashboard 
